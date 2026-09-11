@@ -1,0 +1,65 @@
+# Unity 자동 생성 폴더
+/[Ll]ibrary/
+/[Tt]emp/
+/[Oo]bj/
+/[Bb]uild/
+/[Bb]uilds/
+/[Ll]ogs/
+/[Uu]ser[Ss]ettings/
+/[Mm]emoryCaptures/
+/[Rr]ecordings/
+.utmp/
+
+# IDE / 솔루션 파일
+.vs/
+.vscode/
+.idea/
+.gradle/
+.consulo/
+ExportedObj/
+*.csproj
+*.unityproj
+*.sln
+*.slnx
+*.suo
+*.tmp
+*.user
+*.userprefs
+*.pidb
+*.booproj
+*.svd
+*.pdb
+*.mdb
+*.opendb
+*.VC.db
+*.DotSettings.user
+/[Aa]ssets/Plugins/Editor/JetBrains*
+
+# 디버그 파일용 meta
+*.pidb.meta
+*.pdb.meta
+*.mdb.meta
+
+# 로그 / 크래시
+*.log
+sysinfo.txt
+mono_crash.*
+crashlytics-build.properties
+
+# 빌드 결과물
+*.apk
+*.aab
+*.unitypackage
+*.unitypackage.meta
+*.app
+
+# Blender 백업
+*.blend1
+*.blend1.meta
+
+# 테스트 러너
+InitTestScene*.unity*
+
+# OS
+.DS_Store
+Thumbs.db
