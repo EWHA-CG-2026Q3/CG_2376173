@@ -10,6 +10,9 @@
           {
             new Vector3(0f, 1f, 0f),      // 0
             new Vector3(1f, 0.3f, 0f),    // 1
+            new Vector3(0.6f, -1f, 0f),   // 2
+            new Vector3(-0.6f, -1f, 0f),  // 3
+            new Vector3(-1f, 0.3f, 0f),   // 4
           };
 
           // TODO 2: 정점 3개씩 묶어 삼각형들을 구성하세요
