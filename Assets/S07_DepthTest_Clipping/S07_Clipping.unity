@@ -448,9 +448,9 @@ MonoBehaviour:
   canvasHeight: 256
   clipMargin: 40
   polygon:
-  - {x: -30, y: 50}
-  - {x: 120, y: 220}
-  - {x: 280, y: 50}
+  - {x: 10, y: 90}
+  - {x: 110, y: 250}
+  - {x: 200, y: 70}
   fillColor: {r: 1, g: 0.6, b: 0.2, a: 1}
   marginOutlineColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
 --- !u!114 &571283679
