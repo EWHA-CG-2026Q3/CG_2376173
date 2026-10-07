@@ -9,18 +9,24 @@ public class S09_RotationX : MonoBehaviour
 {
     [SerializeField] float angle = 30f;   // x축 회전 각도, 도 단위
 
+    // 과제: 높이(y)에 비례해 x축 방향으로 밀리는 기울이기(shear) 행렬
+    // 점 (x, y, z) → (x + k·y, y, z)
+    [SerializeField] bool useShear = true;  // 켜면 회전 대신 기울이기 적용
+    [SerializeField] float k = 0.8f;        // (학번 끝자리 3 + 1) ÷ 5
+
     DiamondMesh diamondMesh;
 
     void OnEnable()
     {
         diamondMesh = GetComponent<DiamondMesh>();
+        LogTopVertex();
     }
 
     void Update()
     {
         if (diamondMesh == null || diamondMesh.BaseVertices == null) return;
 
-        float[,] R = RotationXMatrixRaw(angle);
+        float[,] R = useShear ? ShearMatrixRaw(k) : RotationXMatrixRaw(angle);
         Vector3[] baseVertices = diamondMesh.BaseVertices;
         Vector3[] verts = new Vector3[baseVertices.Length];
         for (int i = 0; i < baseVertices.Length; i++)
@@ -54,6 +60,32 @@ public class S09_RotationX : MonoBehaviour
 
         return new float[,] {   // 임시: 아무 변환도 하지 않는 단위행렬
             { 1f, 0f, 0f, 0f },
+            { 0f, 1f, 0f, 0f },
+            { 0f, 0f, 1f, 0f },
+            { 0f, 0f, 0f, 1f }
+        };
+    }
+
+    // Inspector에서 k를 바꿀 때마다 Console에 바로 출력됨
+    void OnValidate()
+    {
+        LogTopVertex();
+    }
+
+    // 꼭대기 정점 (0.5, 1, 0.5)의 기울이기 결과를 출력
+    void LogTopVertex()
+    {
+        if (!useShear) return;
+        Vector3 top = new Vector3(0.5f, 1f, 0.5f);
+        Vector3 result = FromHomogeneous(MultiplyMatrixVectorRaw(ShearMatrixRaw(k), ToHomogeneous(top)));
+        Debug.Log($"[Shear k = {k}] 꼭대기 정점 {top} → {result}");
+    }
+
+    // 1열: e₁ 그대로 / 2열: e₂ → (k, 1, 0) / 3열: e₃ 그대로 / 4열: 원점 그대로
+    float[,] ShearMatrixRaw(float k)
+    {
+        return new float[,] {
+            { 1f, k,  0f, 0f },
             { 0f, 1f, 0f, 0f },
             { 0f, 0f, 1f, 0f },
             { 0f, 0f, 0f, 1f }
